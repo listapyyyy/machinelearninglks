@@ -1,10 +1,14 @@
-technomart-recommendation/
+recommender-system/
 │
-├── train_model.py
-├── recommend.py
-├── config.py
-├── requirements.txt
-├── README.md
+├── 1-training/                 # Folder untuk training model
+│   ├── config.py                # Konfigurasi bucket S3
+│   ├── train_model.py           # Script training (sudah dimodifikasi agar simpan matrix)
+│   └── requirements-training.txt # Dependencies untuk training (bisa sama dengan inference)
 │
-└── notebooks/
-    └── training_test.ipynb
+├── 2-deployment/                # Folder untuk deployment ke SageMaker
+│   ├── inference.py              # Script untuk endpoint
+│   ├── requirements.txt          # Dependencies untuk endpoint
+│   └── package_model.py          # Script untuk mengemas model ke .tar.gz dan upload ke S3
+│
+└── 3-testing/                   # Folder untuk menguji endpoint setelah deploy
+    └── test_endpoint.py          # Script uji coba endpoint

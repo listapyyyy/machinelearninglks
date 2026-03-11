@@ -9,7 +9,6 @@ import config
 # ==============================
 # LOAD DATA FROM S3
 # ==============================
-
 bucket = config.BUCKET_NAME
 
 ui_path = f"s3://{bucket}/{config.USER_INTERACTIONS_PATH}"
@@ -25,7 +24,6 @@ pc_df = pd.read_parquet(pc_path)
 # ==============================
 # PREPARE INTERACTION DATA
 # ==============================
-
 print("Preparing interaction dataset...")
 
 ui_df = ui_df[['user_id','product_id']]
@@ -44,7 +42,6 @@ product_map = dict(enumerate(interaction_df["product_id"].astype("category").cat
 # ==============================
 # CREATE SPARSE MATRIX
 # ==============================
-
 print("Building sparse matrix...")
 
 matrix = coo_matrix(
@@ -57,7 +54,6 @@ matrix = coo_matrix(
 # ==============================
 # TRAIN MODEL
 # ==============================
-
 print("Training ALS recommendation model...")
 
 model = AlternatingLeastSquares(
@@ -71,7 +67,6 @@ model.fit(matrix)
 # ==============================
 # SAVE MODEL
 # ==============================
-
 print("Saving model...")
 
 model_data = {
@@ -88,7 +83,6 @@ with open(local_model_file, "wb") as f:
 # ==============================
 # UPLOAD MODEL TO S3
 # ==============================
-
 print("Uploading model to S3...")
 
 s3 = boto3.client("s3")
