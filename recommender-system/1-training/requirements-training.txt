@@ -1,0 +1,6 @@
+pandas
+numpy
+boto3
+scipy
+implicit
+pyarrow          # untuk read_parquet
