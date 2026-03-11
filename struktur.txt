@@ -1,0 +1,10 @@
+technomart-recommendation/
+│
+├── train_model.py
+├── recommend.py
+├── config.py
+├── requirements.txt
+├── README.md
+│
+└── notebooks/
+    └── training_test.ipynb

@@ -1,0 +1,8 @@
+pandas
+numpy
+boto3
+s3fs
+pyarrow
+scikit-learn
+implicit
+scipy
