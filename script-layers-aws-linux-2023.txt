@@ -1,0 +1,9 @@
+docker run --rm -v "$PWD":/var/task --entrypoint /bin/bash public.ecr.aws/lambda/python:3.13 -c "
+  microdnf install -y gcc gcc-c++ python3-devel &&
+  pip install scipy implicit -t /var/task/python &&
+  mkdir -p /var/task/lib &&
+  cp /usr/lib64/libgomp.so.1 /var/task/lib/ 2>/dev/null || cp /lib64/libgomp.so.1 /var/task/lib/ 2>/dev/null
+"
+
+zip -r implicit-layer.zip python/ lib/
+aws s3 cp implicit-layer.zip s3://techmart-s3-test/layers/
